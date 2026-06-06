@@ -118,3 +118,12 @@
 {"time":"2026-06-06T04:26:51+00:00","channel":"security","level":"ERROR","message":"ensureSensitiveDataSchema failed.","context":{"error":"Database connection failed."}}
 {"time":"2026-06-06T04:26:51+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
 {"time":"2026-06-06T09:14:29+00:00","channel":"security","level":"ERROR","message":"ensureSensitiveDataSchema failed.","context":{"error":"Database connection failed."}}
+{"time":"2026-06-06T12:15:50+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"anthony.domasig@evsu.edu.ph","subject":"BantayPurrPaws — Email Verification OTP"}}
+{"time":"2026-06-06T12:16:43+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"asdasdasdasd@gmail.com","subject":"BantayPurrPaws — Email Verification OTP"}}
+{"time":"2026-06-06T12:18:37+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"asdasda@facebook.org","subject":"BantayPurrPaws — Email Verification OTP"}}
+{"time":"2026-06-06T12:19:04+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"anthony.domasig@evsu.edu.ph","subject":"BantayPurrPaws — Email Verification OTP"}}
+{"time":"2026-06-06T12:19:32+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"anthony.domasig@evsu.edu.ph","subject":"BantayPurrPaws — Password Reset OTP"}}
+{"time":"2026-06-06T12:20:05+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"anthony.domasig@evsu.edu.ph","subject":"BantayPurrPaws — Your Password Was Changed"}}
+{"time":"2026-06-06T12:20:17+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"anthony.domasig@evsu.edu.ph","subject":"BantayPurrPaws — Email Verification OTP"}}
+{"time":"2026-06-06T12:20:54+00:00","channel":"notifications","level":"INFO","message":"Notification created.","context":{"type":"system","id":51}}
+{"time":"2026-06-06T12:21:03+00:00","channel":"notifications","level":"INFO","message":"Notification created.","context":{"type":"system","id":52}}

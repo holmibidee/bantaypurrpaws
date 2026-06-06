@@ -102,7 +102,7 @@ CREATE TABLE `otp_tokens` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(150) NOT NULL,
   `otp_code` char(6) NOT NULL,
-  `purpose` enum('registration','password_reset','google_link','profile_update','email_change_current','email_change_new','staff_invite') NOT NULL DEFAULT 'registration',
+  `purpose` enum('registration','login','password_reset','google_link','profile_update','email_change_current','email_change_new','staff_invite') NOT NULL DEFAULT 'registration',
   `expires_at` datetime NOT NULL,
   `used` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,

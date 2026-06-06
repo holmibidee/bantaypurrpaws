@@ -320,3 +320,77 @@ HTML;
     return sendRawEmail($to, APP_NAME . ' — Your Password Was Changed', emailShell('Password Changed', $inner), $name);
 }
 
+
+/**
+ * Verify that an email address is reachable by performing:
+ *   1. PHP syntax validation
+ *   2. DNS MX / A record check (no real email sent)
+ *   3. Brevo contact lookup to detect blacklisted / invalid addresses
+ *
+ * Returns true if the address looks deliverable, or an error string.
+ */
+function verifyEmailDeliverability(string $email): bool|string
+{
+    // 1. Syntax guard
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return 'Please enter a valid email address.';
+    }
+
+    // 2. MX / DNS check
+    $domain = substr(strrchr($email, '@'), 1);
+    if (!checkdnsrr($domain, 'MX') && !checkdnsrr($domain, 'A')) {
+        return 'The email domain does not exist or cannot receive mail. Please check the address.';
+    }
+
+    // 3. Brevo contact lookup (non-destructive — no email sent)
+    if (BREVO_API_KEY === '') {
+        // Brevo not configured — DNS check is sufficient; allow through
+        return true;
+    }
+
+    $encodedEmail = rawurlencode($email);
+    $ch = curl_init("https://api.brevo.com/v3/contacts/{$encodedEmail}");
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPGET        => true,
+        CURLOPT_HTTPHEADER     => [
+            'accept: application/json',
+            'api-key: ' . BREVO_API_KEY,
+        ],
+        CURLOPT_SSL_VERIFYPEER => true,
+        CURLOPT_TIMEOUT        => 15,
+    ]);
+
+    $response  = curl_exec($ch);
+    $httpCode  = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlError = curl_error($ch);
+    curl_close($ch);
+
+    if ($response === false || $curlError !== '') {
+        // Network error — fall back to DNS-passed result rather than blocking sign-ups
+        bpp_log('mailer', 'warning', 'Email deliverability check cURL error; falling back to DNS result.', ['error' => $curlError]);
+        return true;
+    }
+
+    if ($httpCode === 200) {
+        $data = json_decode($response, true);
+        // Brevo marks hard-bounced / unsubscribed contacts as blacklisted
+        if (!empty($data['emailBlacklisted'])) {
+            return 'This email address has been flagged as undeliverable. Please use a different address.';
+        }
+        return true;
+    }
+
+    if ($httpCode === 404) {
+        // Unknown to Brevo but DNS passed — brand-new valid address
+        return true;
+    }
+
+    if ($httpCode === 400) {
+        return 'That email address appears to be invalid or undeliverable. Please use a different address.';
+    }
+
+    // Unexpected HTTP code — log and allow (don't block sign-ups on Brevo downtime)
+    bpp_log('mailer', 'warning', 'Email deliverability check returned unexpected code; allowing.', ['code' => $httpCode]);
+    return true;
+}

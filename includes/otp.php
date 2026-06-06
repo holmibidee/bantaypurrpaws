@@ -11,6 +11,12 @@ require_once __DIR__ . '/mailer.php';
 define('OTP_TTL_SECONDS', 900);   // 15 minutes (Brevo free tier can be slow)
 define('OTP_MAX_RESEND',  100);     // max sends per hour
 
+// IMPORTANT: every purpose string used here MUST exist in the
+// otp_tokens.purpose ENUM in bantaypurrpaws.sql (and your live DB).
+// If you add a new purpose, run:
+//   ALTER TABLE `otp_tokens` MODIFY COLUMN `purpose` ENUM(..., 'your_new_purpose', ...);
+// Missing purposes cause MySQL to silently store '' and every OTP verify returns 'invalid'.
+
 // ── Generate ──────────────────────────────────────────────
 
 function generateOtp(): string {

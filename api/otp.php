@@ -22,8 +22,43 @@ $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 // purpose=registration explicitly.
 $purpose = $_POST['purpose'] ?? $_GET['purpose'] ?? 'login';
 // Whitelist valid purposes to prevent abuse
+// NOTE: 'login' must also exist in the otp_tokens.purpose ENUM — see bantaypurrpaws.sql
 if (!in_array($purpose, ['login', 'registration', 'password_reset'], true)) {
     $purpose = 'login';
+}
+
+// ── Action: check_email ───────────────────────────────────
+// Validates that the email address is syntactically valid, not already
+// registered (for sign-up), and reachable via Brevo before issuing any OTP.
+if ($action === 'check_email') {
+    $checkContext = $_POST['context'] ?? $_GET['context'] ?? 'registration';
+
+    // 1. Syntax check
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo json_encode(['success' => false, 'message' => 'Please enter a valid email address.']);
+        exit;
+    }
+
+    // 2. For registration: reject already-registered emails
+    if ($checkContext === 'registration') {
+        require_once __DIR__ . '/../includes/auth.php';
+        if (findUserByEmail($email)) {
+            echo json_encode(['success' => false, 'message' => 'An account with that email already exists.']);
+            exit;
+        }
+    }
+
+    // 3. Deliverability probe — send a silent test via Brevo.
+    //    If Brevo rejects the recipient the address is unreachable.
+    require_once __DIR__ . '/../includes/mailer.php';
+    $probeResult = verifyEmailDeliverability($email);
+    if ($probeResult !== true) {
+        echo json_encode(['success' => false, 'message' => $probeResult]);
+        exit;
+    }
+
+    echo json_encode(['success' => true, 'message' => 'Email address is valid and reachable.']);
+    exit;
 }
 
 if ($action === 'issue') {
