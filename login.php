@@ -681,7 +681,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="login-hero" aria-hidden="true">
     <span class="login-hero-paws">🐾</span>
     <h1>Give a pet a<br>loving home.</h1>
-    <p>Report strays, connect with rescuers, and find your next furry family member — all in one place.</p
+    <p>Report strays, connect with rescuers, and find your next furry family member — all in one place.</p>
+</div>
 
 <!-- Right login panel -->
 <div class="login-panel">
