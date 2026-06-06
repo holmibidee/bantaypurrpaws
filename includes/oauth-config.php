@@ -27,5 +27,5 @@ if ($g && $g !== '') {
 }
 
 return [
-    'app_url' => 'https://bantaypurrpaws.infinityfreeapp.com',
+    'app_url' => 'bantaypurrpaws-production.up.railway.app',
 ];
