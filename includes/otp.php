@@ -11,6 +11,12 @@ require_once __DIR__ . '/mailer.php';
 define('OTP_TTL_SECONDS', 900);   // 15 minutes (Brevo free tier can be slow)
 define('OTP_MAX_RESEND',  100);     // max sends per hour
 
+// IMPORTANT: every purpose string used here MUST exist in the
+// otp_tokens.purpose ENUM in bantaypurrpaws.sql (and your live DB).
+// If you add a new purpose, run:
+//   ALTER TABLE `otp_tokens` MODIFY COLUMN `purpose` ENUM(..., 'your_new_purpose', ...);
+// Missing purposes cause MySQL to silently store '' and every OTP verify returns 'invalid'.
+
 // ── Generate ──────────────────────────────────────────────
 
 function generateOtp(): string {
@@ -84,30 +90,21 @@ function verifyOtp(string $email, string $code, string $purpose = 'registration'
     );
 
     if (!$row) {
-        error_log('[OTP DEBUG] No unused token found for email=' . $email . ' purpose=' . $purpose);
         return 'invalid';
     }
 
     // Trim both values to handle CHAR(6) padding and whitespace
-    $storedCode  = trim($row['otp_code']);
+    $storedCode = trim($row['otp_code']);
     $enteredCode = trim($code);
 
-    error_log('[OTP DEBUG] email=' . $email . ' purpose=' . $purpose
-        . ' stored="' . $storedCode . '"(len=' . strlen($storedCode) . ')'
-        . ' entered="' . $enteredCode . '"(len=' . strlen($enteredCode) . ')'
-        . ' expires_at=' . $row['expires_at']
-        . ' now_utc=' . gmdate('Y-m-d H:i:s')
-        . ' expires_unix=' . strtotime($row['expires_at'] . ' UTC')
-        . ' time_now=' . time());
-
+    // Debug logging before comparison
+    // Compare codes in PHP to avoid DB-side numeric casting (preserve leading zeros)
     if (!hash_equals($storedCode, $enteredCode)) {
-        error_log('[OTP DEBUG] MISMATCH — codes differ');
         return 'invalid';
     }
 
     $expiresUtc = strtotime($row['expires_at'] . ' UTC');
     if ($expiresUtc < time()) {
-        error_log('[OTP DEBUG] EXPIRED — expiresUtc=' . $expiresUtc . ' now=' . time());
         db_update('otp_tokens', ['used' => true], 'id=eq.' . $row['id']);
         return 'expired';
     }
