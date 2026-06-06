@@ -176,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             justify-content: center;
             padding: clamp(24px, 4vw, 48px);
             overflow-y: auto;
-            margin-right: 50px;
+            margin-right: 100px;
         }
 
         .login-card {
@@ -679,7 +679,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!-- Left hero text (desktop only) -->
 <div class="login-hero" aria-hidden="true">
-    <span class="login-hero-paws">🐾</span>
+    <span class="login-hero-paws">❤️</span>
     <h1>Give a pet a<br>loving home.</h1>
     <p>Report strays, connect with rescuers, and find your next furry family member — all in one place.</p>
 </div>
@@ -693,7 +693,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php if (is_file(__DIR__ . '/assets/logo.png')): ?>
                 <img src="<?= url('assets/logo.png') ?>" alt="BantayPurrPaws" class="card-brand-img">
             <?php else: ?>
-                <span class="card-brand-mark">❤️</span>
+                <span class="card-brand-mark">🐾</span>
             <?php endif; ?>
             <span class="card-brand-name">BantayPurrPaws</span>
         </a>
