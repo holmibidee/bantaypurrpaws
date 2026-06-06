@@ -1,0 +1,119 @@
+{"time":"2026-06-06T02:08:11+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:08:19+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:08:21+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:09:42+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:09:43+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"riccselling05@gmail.com","subject":"BantayPurrPaws — Staff Account Invitation"}}
+{"time":"2026-06-06T02:10:26+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:10:33+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:10:34+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"riccselling05@gmail.com","subject":"BantayPurrPaws — Email Verification OTP"}}
+{"time":"2026-06-06T02:10:57+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:10:58+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"riccselling05@gmail.com","subject":"BantayPurrPaws — Password Reset OTP"}}
+{"time":"2026-06-06T02:11:27+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:11:28+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"riccselling05@gmail.com","subject":"BantayPurrPaws — Email Verification OTP"}}
+{"time":"2026-06-06T02:15:29+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:15:30+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"riccselling05@gmail.com","subject":"BantayPurrPaws — Password Reset OTP"}}
+{"time":"2026-06-06T02:25:30+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:25:31+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"riccselling05@gmail.com","subject":"BantayPurrPaws — Email Verification OTP"}}
+{"time":"2026-06-06T02:26:19+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:26:25+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:26:26+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"riccselling05@gmail.com","subject":"BantayPurrPaws — Password Reset OTP"}}
+{"time":"2026-06-06T02:27:25+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:27:26+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"riccselling05@gmail.com","subject":"BantayPurrPaws — Your Password Was Changed"}}
+{"time":"2026-06-06T02:27:33+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:27:34+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"riccselling05@gmail.com","subject":"BantayPurrPaws — Email Verification OTP"}}
+{"time":"2026-06-06T02:27:56+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:27:56+00:00","channel":"notifications","level":"INFO","message":"Notification created.","context":{"type":"system","id":31}}
+{"time":"2026-06-06T02:27:59+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:28:09+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:28:10+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:28:10+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:28:10+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:28:22+00:00","channel":"notifications","level":"INFO","message":"Notification created.","context":{"type":"system","id":32}}
+{"time":"2026-06-06T02:28:47+00:00","channel":"notifications","level":"INFO","message":"Notification created.","context":{"type":"system","id":33}}
+{"time":"2026-06-06T02:28:58+00:00","channel":"notifications","level":"INFO","message":"Notification created.","context":{"type":"system","id":34}}
+{"time":"2026-06-06T02:29:22+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:29:23+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"domasiganthony139@gmail.com","subject":"BantayPurrPaws — New Announcement"}}
+{"time":"2026-06-06T02:29:24+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"riccselling05@gmail.com","subject":"BantayPurrPaws — New Announcement"}}
+{"time":"2026-06-06T02:29:24+00:00","channel":"announcements","level":"INFO","message":"Announcement posted.","context":{"notifications":2,"emails":2,"user_total":2,"errors":0}}
+{"time":"2026-06-06T02:30:09+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:30:09+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"domasiganthony139@gmail.com","subject":"BantayPurrPaws — Email Verification OTP"}}
+{"time":"2026-06-06T02:30:43+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:30:46+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:30:47+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"domasiganthony139@gmail.com","subject":"BantayPurrPaws — Email Verification OTP"}}
+{"time":"2026-06-06T02:31:08+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:31:08+00:00","channel":"notifications","level":"INFO","message":"Notification created.","context":{"type":"system","id":37}}
+{"time":"2026-06-06T02:31:20+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:32:57+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:32:57+00:00","channel":"reports","level":"ERROR","message":"Report submit failed.","context":{"error":"SQLSTATE[HY093]: Invalid parameter number"}}
+{"time":"2026-06-06T02:33:06+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:52:15+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T02:52:15+00:00","channel":"reports","level":"ERROR","message":"Report submit failed.","context":{"error":"SQLSTATE[HY093]: Invalid parameter number"}}
+{"time":"2026-06-06T03:10:51+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:10:52+00:00","channel":"notifications","level":"INFO","message":"Notification created.","context":{"type":"report","id":38}}
+{"time":"2026-06-06T03:10:52+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:11:20+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:11:21+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"anthony.domasig@evsu.edu.ph","subject":"BantayPurrPaws — Email Verification OTP"}}
+{"time":"2026-06-06T03:11:46+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:11:46+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"anthony.domasig@evsu.edu.ph","subject":"BantayPurrPaws — Password Reset OTP"}}
+{"time":"2026-06-06T03:12:39+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:12:40+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"anthony.domasig@evsu.edu.ph","subject":"BantayPurrPaws — Your Password Was Changed"}}
+{"time":"2026-06-06T03:12:53+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:12:54+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"anthony.domasig@evsu.edu.ph","subject":"BantayPurrPaws — Email Verification OTP"}}
+{"time":"2026-06-06T03:13:18+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:13:18+00:00","channel":"notifications","level":"INFO","message":"Notification created.","context":{"type":"system","id":39}}
+{"time":"2026-06-06T03:13:21+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:13:24+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:13:26+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:13:34+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:13:47+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:13:55+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:19:14+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:19:19+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:19:19+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:19:42+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:19:42+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:20:35+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:20:35+00:00","channel":"notifications","level":"INFO","message":"Notification created.","context":{"type":"report","id":40}}
+{"time":"2026-06-06T03:20:35+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:20:39+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:20:41+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:20:45+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:20:46+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"domasiganthony139@gmail.com","subject":"BantayPurrPaws — Rescue Report Approved"}}
+{"time":"2026-06-06T03:20:46+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:20:52+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:20:53+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"domasiganthony139@gmail.com","subject":"BantayPurrPaws — Rescue Report Approved"}}
+{"time":"2026-06-06T03:20:53+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:20:56+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:20:59+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:02+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:02+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"domasiganthony139@gmail.com","subject":"BantayPurrPaws — Rescue Report Update"}}
+{"time":"2026-06-06T03:21:02+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:05+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:09+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:10+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:12+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:13+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"domasiganthony139@gmail.com","subject":"BantayPurrPaws — Rescue Report Approved"}}
+{"time":"2026-06-06T03:21:13+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:16+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:17+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"domasiganthony139@gmail.com","subject":"BantayPurrPaws — Rescue Report Approved"}}
+{"time":"2026-06-06T03:21:17+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:21+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:23+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:25+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:26+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"domasiganthony139@gmail.com","subject":"BantayPurrPaws — Rescue Report Approved"}}
+{"time":"2026-06-06T03:21:26+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:27+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:29+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:31+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:32+00:00","channel":"mailer","level":"INFO","message":"Email sent.","context":{"to":"domasiganthony139@gmail.com","subject":"BantayPurrPaws — Rescue Report Approved"}}
+{"time":"2026-06-06T03:21:32+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:34+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:35+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:40+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:21:47+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:24:12+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T03:24:17+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T04:26:40+00:00","channel":"security","level":"ERROR","message":"ensureSensitiveDataSchema failed.","context":{"error":"Database connection failed."}}
+{"time":"2026-06-06T04:26:40+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}
+{"time":"2026-06-06T04:26:51+00:00","channel":"security","level":"ERROR","message":"ensureSensitiveDataSchema failed.","context":{"error":"Database connection failed."}}
+{"time":"2026-06-06T04:26:51+00:00","channel":"security","level":"WARNING","message":"DATA_ENCRYPTION_KEY not set; using derived fallback key."}

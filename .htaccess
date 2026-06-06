@@ -1,0 +1,35 @@
+# Protect .env file from web access
+<IfModule mod_authz_core.c>
+    <Files ".env*">
+        Require all denied
+    </Files>
+</IfModule>
+
+# Fallback for older Apache versions
+<IfModule !mod_authz_core.c>
+    <Files ".env*">
+        Deny from all
+    </Files>
+</IfModule>
+
+# Protect logs directory
+<IfModule mod_authz_core.c>
+    <Directory "logs">
+        Require all denied
+    </Directory>
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+    <Directory "logs">
+        Deny from all
+    </Directory>
+</IfModule>
+
+# Enable compression and caching
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Set proper MIME types
+AddType application/json .json
+AddType application/javascript .js

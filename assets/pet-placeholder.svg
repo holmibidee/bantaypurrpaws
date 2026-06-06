@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#f5f5f4"/>
+  <text x="200" y="155" text-anchor="middle" font-family="system-ui,sans-serif" font-size="48" fill="#d6d3d1">=></text>
+  <text x="200" y="190" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" fill="#a8a29e">No photo</text>
+</svg>
