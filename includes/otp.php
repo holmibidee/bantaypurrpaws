@@ -84,21 +84,30 @@ function verifyOtp(string $email, string $code, string $purpose = 'registration'
     );
 
     if (!$row) {
+        error_log('[OTP DEBUG] No unused token found for email=' . $email . ' purpose=' . $purpose);
         return 'invalid';
     }
 
     // Trim both values to handle CHAR(6) padding and whitespace
-    $storedCode = trim($row['otp_code']);
+    $storedCode  = trim($row['otp_code']);
     $enteredCode = trim($code);
 
-    // Debug logging before comparison
-    // Compare codes in PHP to avoid DB-side numeric casting (preserve leading zeros)
+    error_log('[OTP DEBUG] email=' . $email . ' purpose=' . $purpose
+        . ' stored="' . $storedCode . '"(len=' . strlen($storedCode) . ')'
+        . ' entered="' . $enteredCode . '"(len=' . strlen($enteredCode) . ')'
+        . ' expires_at=' . $row['expires_at']
+        . ' now_utc=' . gmdate('Y-m-d H:i:s')
+        . ' expires_unix=' . strtotime($row['expires_at'] . ' UTC')
+        . ' time_now=' . time());
+
     if (!hash_equals($storedCode, $enteredCode)) {
+        error_log('[OTP DEBUG] MISMATCH — codes differ');
         return 'invalid';
     }
 
     $expiresUtc = strtotime($row['expires_at'] . ' UTC');
     if ($expiresUtc < time()) {
+        error_log('[OTP DEBUG] EXPIRED — expiresUtc=' . $expiresUtc . ' now=' . time());
         db_update('otp_tokens', ['used' => true], 'id=eq.' . $row['id']);
         return 'expired';
     }
