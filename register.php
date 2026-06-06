@@ -37,6 +37,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'send_
         exit;
     }
 
+    // ── Email deliverability verification ─────────────────
+    // Checks DNS and Brevo before committing to send an OTP,
+    // so users with unreachable inboxes are caught early.
+    require_once __DIR__ . '/includes/mailer.php';
+    $deliverable = verifyEmailDeliverability($email);
+    if ($deliverable !== true) {
+        echo json_encode(['ok' => false, 'message' => $deliverable]);
+        exit;
+    }
+
     $_SESSION['reg_pending_phase1'] = ['full_name' => $fullName, 'email' => $email];
 
     $result = issueAndSendOtp($email, $fullName, 'registration');

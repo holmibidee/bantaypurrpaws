@@ -9,5 +9,5 @@
 return [
     // Optional canonical URL for CLI; web requests use the real HTTP_HOST instead.
     // Set APP_URL in .env for production deployments.
-    'app_url' => 'bantaypurrpaws-production.up.railway.app',
+    'app_url' => 'https://yourdomain.example.com',
 ];

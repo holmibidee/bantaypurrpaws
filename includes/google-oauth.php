@@ -29,8 +29,8 @@ function googleOAuthDebugErrors(): void {
 }
 
 // ── Configuration (override via env: GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI)
-define('GOOGLE_CLIENT_ID', $_ENV['GOOGLE_CLIENT_ID'] ?? getenv('GOOGLE_CLIENT_ID') ?: '393138075821-ecekhh0kvcc84f9vl0f0oiod08t2dbmd.apps.googleusercontent.com');
-define('GOOGLE_CLIENT_SECRET', $_ENV['GOOGLE_CLIENT_SECRET'] ?? getenv('GOOGLE_CLIENT_SECRET') ?: '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');
+define('GOOGLE_CLIENT_ID', $_ENV['GOOGLE_CLIENT_ID'] ?? getenv('GOOGLE_CLIENT_ID') ?: '');
+define('GOOGLE_CLIENT_SECRET', $_ENV['GOOGLE_CLIENT_SECRET'] ?? getenv('GOOGLE_CLIENT_SECRET') ?: '');
 
 /**
  * OAuth redirect URI for the current request (must match Google Cloud Console exactly).

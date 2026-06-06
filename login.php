@@ -317,7 +317,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             const res = await fetch('<?= url('api/otp.php') ?>', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({ action: 'issue', email: e })
+                body: new URLSearchParams({ action: 'issue', email: e, purpose: 'login' })
             });
             const json = await res.json();
             if (json.success) {
@@ -346,7 +346,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             const res = await fetch('<?= url('api/otp.php') ?>', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({ action: 'verify', email: e, code: c })
+                body: new URLSearchParams({ action: 'verify', email: e, code: c, purpose: 'login' })
             });
             const json = await res.json();
             if (json.success) {
