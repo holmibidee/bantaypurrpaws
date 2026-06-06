@@ -242,9 +242,29 @@ function findUserByEmail(string $email): ?array {
     $email = strtolower(trim($email));
     $hash  = sensitiveLookupHash($email);
 
+    // 1. Primary lookup: by email_hash (fast, secure)
     $user = db_select('users', 'email_hash=eq.' . urlencode($hash) . '&limit=1', true);
+
+    // 2. Fallback: plaintext email column (catches rows not yet migrated to encryption)
     if (!$user) {
         $user = db_select('users', 'email=eq.' . urlencode($email) . '&limit=1', true);
+    }
+
+    // 3. If we found a user via plaintext fallback and their email_hash is missing,
+    //    migrate this row on-the-fly so future lookups use the secure path.
+    if ($user && (empty($user['email_hash']) || $user['email_hash'] !== $hash)) {
+        try {
+            $protected = protectEmail($email);
+            $pdo = getDB();
+            $stmt = $pdo->prepare('UPDATE users SET email = ?, email_hash = ? WHERE id = ?');
+            $stmt->execute([$protected['email'], $protected['email_hash'], (int) $user['id']]);
+            $user['email_hash'] = $protected['email_hash'];
+        } catch (Throwable $e) {
+            bpp_log('security', 'warning', 'findUserByEmail: on-the-fly migration failed.', [
+                'user_id' => $user['id'] ?? null,
+                'error'   => $e->getMessage(),
+            ]);
+        }
     }
 
     return $user ? hydrateUserSensitiveFields($user) : null;

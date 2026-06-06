@@ -45,7 +45,7 @@ function getDB(): PDO
     if ($GLOBALS['_bantay_pdo'] instanceof PDO) {
         return $GLOBALS['_bantay_pdo'];
     }
-
+    
     $host = $_ENV['DB_HOST'] ?? getenv('DB_HOST') ?: 'localhost';
     $port = $_ENV['DB_PORT'] ?? getenv('DB_PORT') ?: '3306';
     $name = $_ENV['DB_NAME'] ?? getenv('DB_NAME') ?: '';
@@ -60,7 +60,6 @@ function getDB(): PDO
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_EMULATE_PREPARES   => false,
         ]);
-        $pdo->exec("SET time_zone = '+00:00'"); // force UTC to match gmdate() in otp.php
     } catch (PDOException $e) {
         error_log('BantayPurrPaws MySQL connection failed: ' . $e->getMessage());
         throw new RuntimeException('Database connection failed.', 0, $e);
@@ -98,7 +97,7 @@ function db_cast_write_value(mixed $value): mixed
         return $value ? 1 : 0;
     }
     return $value;
-}
+} 
 
 /**
  * Parse PostgREST-style filter strings used across the app.
