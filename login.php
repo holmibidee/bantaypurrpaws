@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .login-hero {
             position: fixed;
             left: clamp(40px, 6vw, 80px);
-            top: 50%;
+            top: 40%;
             transform: translateY(-50%);
             z-index: 1;
             max-width: 440px;
