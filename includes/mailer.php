@@ -12,8 +12,8 @@ require_once __DIR__ . '/env.php';
 load_env_file(dirname(__DIR__) . '/.env');
 require_once __DIR__ . '/logger.php';
 
-define('BREVO_API_KEY',    $_ENV['BREVO_API_KEY'] ?? getenv('BREVO_API_KEY') ?: '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');
-define('MAIL_FROM',        $_ENV['MAIL_FROM'] ?? getenv('MAIL_FROM') ?: 'xjammie143@gmail.com');
+define('BREVO_API_KEY',    $_ENV['BREVO_API_KEY'] ?? getenv('BREVO_API_KEY') ?: '');
+define('MAIL_FROM',        $_ENV['MAIL_FROM'] ?? getenv('MAIL_FROM') ?: '');
 define('MAIL_FROM_NAME',   $_ENV['MAIL_FROM_NAME'] ?? getenv('MAIL_FROM_NAME') ?: 'BantayPurrPaws');
 define('APP_NAME',         'BantayPurrPaws');
 define('APP_COLOR',        '#7c6f5b'); // matches CSS --primary

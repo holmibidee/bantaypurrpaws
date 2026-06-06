@@ -45,12 +45,12 @@ function getDB(): PDO
     if ($GLOBALS['_bantay_pdo'] instanceof PDO) {
         return $GLOBALS['_bantay_pdo'];
     }
-
-    $host = 'sql103.infinityfree.com';
-    $port = '3306';
-    $name = 'if0_42111065_bantaypurrpaws';
-    $user = 'if0_42111065';
-    $pass = 'wottaberu1113';
+    
+    $host = $_ENV['DB_HOST'] ?? getenv('DB_HOST') ?: 'localhost';
+    $port = $_ENV['DB_PORT'] ?? getenv('DB_PORT') ?: '3306';
+    $name = $_ENV['DB_NAME'] ?? getenv('DB_NAME') ?: '';
+    $user = $_ENV['DB_USER'] ?? getenv('DB_USER') ?: '';
+    $pass = $_ENV['DB_PASSWORD'] ?? getenv('DB_PASSWORD') ?: '';
 
     $dsn = sprintf('mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4', $host, $port, $name);
 

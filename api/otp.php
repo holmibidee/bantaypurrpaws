@@ -17,6 +17,15 @@ if (!$action || !$email) {
 // Normalize email
 $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
+// Allow callers to specify purpose; default to 'login' since this endpoint
+// is primarily used by the login flow. Registration OTPs should pass
+// purpose=registration explicitly.
+$purpose = $_POST['purpose'] ?? $_GET['purpose'] ?? 'login';
+// Whitelist valid purposes to prevent abuse
+if (!in_array($purpose, ['login', 'registration', 'password_reset'], true)) {
+    $purpose = 'login';
+}
+
 if ($action === 'issue') {
     // Ensure user exists so we can address the email
     $user = findUserByEmail($email);
@@ -25,8 +34,8 @@ if ($action === 'issue') {
         exit;
     }
 
-    $name = $user['full_name'] ?? '';
-    $result = issueAndSendOtp($email, $name, 'registration');
+    $name   = $user['full_name'] ?? '';
+    $result = issueAndSendOtp($email, $name, $purpose);
     if ($result === true) {
         echo json_encode(['success' => true, 'message' => 'OTP sent']);
     } else {
@@ -42,7 +51,7 @@ if ($action === 'verify') {
         exit;
     }
 
-    $status = verifyOtp($email, $code, 'registration');
+    $status = verifyOtp($email, $code, $purpose);
     if ($status === 'valid') {
         echo json_encode(['success' => true, 'message' => 'valid']);
     } elseif ($status === 'expired') {
