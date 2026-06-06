@@ -176,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             justify-content: center;
             padding: clamp(24px, 4vw, 48px);
             overflow-y: auto;
-            margin-right: 20px;
+            margin-right: 30px;
         }
 
         .login-card {
