@@ -2,28 +2,19 @@
 /**
  * BantayPurrPaws — Login API
  *
- * FIX #4: This endpoint is called by two different clients:
- *   1. The Flutter app  — expects a JSON response, uses SharedPreferences,
- *                         does NOT use PHP sessions.
- *   2. The web browser  — uses PHP sessions for page-to-page auth.
- *
- * Previously, loginUser() always wrote to $_SESSION regardless of caller.
- * For the Flutter app this is harmless but wasteful, and it created a
- * confusing dual-auth system. Now:
- *   - If the request sends `Accept: application/json` (Flutter), we return
- *     JSON only and skip session setup.
- *   - If the request comes from a browser form, we set the session as before.
- *
- * JSON clients (e.g. mobile apps) receive user data without PHP sessions.
+ * Clients:
+ *   1. Flutter app      — Accept: application/json  → returns JSON, no session
+ *   2. Web browser      — action=login              → sets PHP session + returns JSON
+ *   3. Web MFA step 1   — action=credentials_only   → verify password only, NO session
+ *                          (OTP is sent separately; session is created after OTP passes)
  */
 
-// CORS headers must be FIRST before anything else
+// CORS headers must be FIRST
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, Accept');
 header('Content-Type: application/json');
 
-// Handle preflight OPTIONS request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
@@ -36,29 +27,49 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$email    = $_POST['email']    ?? '';
+$email    = trim($_POST['email']    ?? '');
 $password = $_POST['password'] ?? '';
+$action   = $_POST['action']   ?? 'login';
 
 if (!$email || !$password) {
     echo json_encode(['success' => false, 'message' => 'Email and password required']);
     exit;
 }
 
-// Detect Flutter / JSON-only client
+// ── credentials_only: verify password, do NOT start a session ────────────────
+// Used by the web login page step 1 (before OTP is verified).
+if ($action === 'credentials_only') {
+    $user = findUserByEmail($email);
+
+    if (!$user) {
+        echo json_encode(['success' => false, 'message' => 'Invalid email or password. Please try again.']);
+        exit;
+    }
+    if (empty($user['password']) && ($user['auth_provider'] ?? '') === 'google') {
+        echo json_encode(['success' => false, 'message' => 'This account uses Google Sign-In. Please click "Sign in with Google".']);
+        exit;
+    }
+    if (!password_verify($password, $user['password'])) {
+        echo json_encode(['success' => false, 'message' => 'Invalid email or password. Please try again.']);
+        exit;
+    }
+
+    echo json_encode(['success' => true]);
+    exit;
+}
+
+// ── Detect Flutter / JSON-only client ────────────────────────────────────────
 $acceptHeader = $_SERVER['HTTP_ACCEPT'] ?? '';
 $isJsonClient = str_contains($acceptHeader, 'application/json')
              && !str_contains($acceptHeader, 'text/html');
 
 if ($isJsonClient) {
-    // FIX #4: JSON client (Flutter) — authenticate but do NOT touch $_SESSION.
-    // Flutter stores the returned user object in SharedPreferences itself.
+    // Flutter: verify credentials, return user data, skip PHP session
     $user = findUserByEmail($email);
-
     if (!$user || empty($user['password']) || !password_verify($password, $user['password'])) {
         echo json_encode(['success' => false, 'message' => 'Invalid email or password.']);
         exit;
     }
-
     echo json_encode([
         'success' => true,
         'user'    => [
@@ -71,7 +82,7 @@ if ($isJsonClient) {
     exit;
 }
 
-// Browser client — use full loginUser() which sets the session
+// ── Browser: full login — verify credentials AND set session ─────────────────
 $result = loginUser($email, $password);
 
 if (is_array($result)) {
