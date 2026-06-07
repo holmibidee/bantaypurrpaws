@@ -360,6 +360,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background: #10b981;
             border-color: #10b981;
             color: #fff;
+            max-width: 560px;
+            padding: 36px 0;
+            justify-self: start;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .card-mfa-connector {
@@ -529,10 +536,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             z-index: 999;
             align-items: center;
             justify-content: center;
-            padding: 24px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.25s ease;
+            width: 56px;
+            height: 56px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.18);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.22);
+            font-size: 1.2rem;
         }
 
         .card-pw-modal.visible {
@@ -703,6 +712,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2>Welcome back</h2>
             <p>Sign in to report strays, adopt pets, and stay updated.</p>
         </div>
+        <div class="auth-panel fade-in login-form">
+            <div class="auth-logo">
+        <img src="<?= url('assets/logo.png') ?>" alt="BantayPurrPaws" class="auth-logo-img">
+        <p>Stray Animal Rescue &amp; Adoption System</p>
+    </div>
 
         <!-- Error -->
         <?php if ($error): ?>
@@ -742,6 +756,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span>Password</span>
             </div>
         </div>
+        <div class="form-group">
+            <label class="form-label">Password <span class="req">*</span></label>
+            <input type="password" id="password" class="form-control" placeholder="Your password" autocomplete="current-password">
+        </div>
+        <div style="display:flex;justify-content:flex-end;margin-top:-8px;margin-bottom:4px;">
+            <a href="<?= url('forgot-password.php') ?>" style="font-size:0.8rem;color:var(--text-muted);">Forgot password?</a>
+        </div>
+        <button type="button" id="btnLogin" class="btn btn-accent">Sign In</button>
+        <div id="loginErr" style="display:none;" class="alert alert-error"></div>
+    </div>
 
         <!-- Login Form -->
         <form method="POST" action="" id="loginForm" class="auth-form">
@@ -807,75 +831,62 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script>
 (function(){
-    const emailInput    = document.getElementById('email');
-    const emailDisplay  = document.getElementById('emailDisplay');
-    const otpInput      = document.getElementById('otp');
-    const hiddenPwd     = document.getElementById('hiddenPassword');
-    const loginForm     = document.getElementById('loginForm');
+    const emailInput = document.getElementById('email');
+    const pwInput    = document.getElementById('password');
+    const btnLogin   = document.getElementById('btnLogin');
+    const loginErr   = document.getElementById('loginErr');
+    const emailDisp  = document.getElementById('emailDisplay');
+    const badge      = document.getElementById('challengeBadge');
+    const btnCancel  = document.getElementById('btnCancelChallenge');
 
-    const btnIssue      = document.getElementById('btnIssueOtp');
-    const btnVerify     = document.getElementById('btnVerifyOtp');
-    const btnBack       = document.getElementById('btnBackToEmail');
-    const btnModalLogin = document.getElementById('btnModalLogin');
-    const btnCancel     = document.getElementById('btnCancelModal');
-    const modalPwd      = document.getElementById('modal_password');
-    const pwModal       = document.getElementById('pwModal');
+    const panels = [null, document.getElementById('panel1'), document.getElementById('panel2')];
+    const steps  = [null, document.getElementById('si1'), document.getElementById('si2'), document.getElementById('si3'), document.getElementById('si4')];
+    const conns  = [null, document.getElementById('c1'), document.getElementById('c2'), document.getElementById('c3')];
 
-    const panel1 = document.getElementById('panel1');
-    const panel2 = document.getElementById('panel2');
-
-    const si1 = document.getElementById('stepIndicator1');
-    const si2 = document.getElementById('stepIndicator2');
-    const si3 = document.getElementById('stepIndicator3');
-    const c1  = document.getElementById('connector1');
-    const c2  = document.getElementById('connector2');
+    let pollInterval = null;
+    let challengeToken = null;
 
     function setStep(n) {
-        [panel1, panel2].forEach(p => p.classList.remove('active'));
-        [si1, si2, si3].forEach(s => { s.classList.remove('active','done'); });
-        [c1, c2].forEach(c => c.classList.remove('done'));
-
-        if (n === 1) {
-            panel1.classList.add('active');
-            si1.classList.add('active');
-        } else if (n === 2) {
-            panel2.classList.add('active');
-            si1.classList.add('done'); c1.classList.add('done');
-            si2.classList.add('active');
-        } else if (n === 3) {
-            si1.classList.add('done'); c1.classList.add('done');
-            si2.classList.add('done'); c2.classList.add('done');
-            si3.classList.add('active');
-        }
+        panels.filter(Boolean).forEach(p => p.classList.remove('active'));
+        steps.filter(Boolean).forEach(s => { s.classList.remove('active','done'); });
+        conns.filter(Boolean).forEach(c => c.classList.remove('done'));
+        if (n >= 1 && panels[n]) panels[n].classList.add('active');
+        for (let i = 1; i < n; i++) { if (steps[i]) steps[i].classList.add('done'); if (conns[i]) conns[i].classList.add('done'); }
+        if (steps[n]) steps[n].classList.add('active');
     }
 
-    btnIssue.addEventListener('click', async function() {
-        const e = emailInput.value.trim();
-        if (!e) { alert('Enter your email address first.'); return; }
-        btnIssue.disabled = true;
-        btnIssue.textContent = 'Sending…';
+    function showErr(msg) {
+        loginErr.textContent = '✕ ' + msg;
+        loginErr.style.display = 'block';
+    }
+    function hideErr() { loginErr.style.display = 'none'; }
+
+    btnLogin.addEventListener('click', async () => {
+        hideErr();
+        const email = emailInput.value.trim();
+        const pw    = pwInput.value;
+        if (!email || !pw) { showErr('Please enter your email and password.'); return; }
+        btnLogin.disabled = true; btnLogin.textContent = 'Signing in…';
         try {
-            const res = await fetch('<?= url('api/otp.php') ?>', {
+            const res = await fetch(<?= json_encode(url('api/login.php')) ?>, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({ action: 'issue', email: e, purpose: 'login' })
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: new URLSearchParams({action:'login', email, password: pw})
             });
-            const json = await res.json();
-            if (json.success) {
-                emailDisplay.textContent = e;
+            const j = await res.json();
+            if (j.success && j.step === 'challenge') {
+                challengeToken = j.token;
+                emailDisp.textContent = email;
                 setStep(2);
-                otpInput.focus();
+                startPolling();
             } else {
-                alert(json.message || 'Failed to send OTP. Please try again.');
+                showErr(j.message || 'Login failed. Please try again.');
             }
-        } catch(err) {
-            alert('Network error. Please try again.');
-        }
-        btnIssue.disabled = false;
-        btnIssue.textContent = 'Send OTP Code';
+        } catch(e) { showErr('Network error. Please check your connection.'); }
+        btnLogin.disabled = false; btnLogin.textContent = 'Sign In';
     });
 
-    btnBack.addEventListener('click', function() { setStep(1); });
+    pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') btnLogin.click(); });
 
     btnVerify.addEventListener('click', async function() {
         const e = emailInput.value.trim();

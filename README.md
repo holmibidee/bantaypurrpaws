@@ -1,4 +1,6 @@
-Change:
-- (.env file) DB_USER & DB_PASSWORD variables
+DATABASE FLOW
 
-Run sql/migrate_otp_login_purpose.sql and otp_purposes_migration.sql first
+IN ORDER !!!
+1. sql/schema.sql
+2. sql/security_schema.sql
+3. bantaypurrpaws.sql
