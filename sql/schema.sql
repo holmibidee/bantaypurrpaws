@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS otp_tokens (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(150) NOT NULL,
     otp_code CHAR(6) NOT NULL,
-    purpose ENUM('registration', 'password_reset', 'google_link') NOT NULL DEFAULT 'registration',
+    purpose VARCHAR(60) NOT NULL DEFAULT 'registration',
     expires_at DATETIME NOT NULL,
     used TINYINT(1) NOT NULL DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
