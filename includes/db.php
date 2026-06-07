@@ -38,6 +38,12 @@ const DB_ALLOWED_TABLES = [
     'notifications',
     'otp_tokens',
     'staff_invites',
+    // Enterprise security tables
+    'login_attempts',
+    'trusted_devices',
+    'security_events',
+    'user_sessions',
+    'blocked_ips',
 ];
 
 function getDB(): PDO
