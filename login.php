@@ -67,7 +67,6 @@ if (isset($_GET['google'])) {
             z-index: 1;
             position: relative;
             justify-content: center;
-            align-items: center;
             padding: 24px;
             min-height: 100vh;
         }
@@ -75,10 +74,11 @@ if (isset($_GET['google'])) {
         /* Two-column grid: hero left, card right */
         .auth-grid {
             display: grid;
-            grid-template-columns: minmax(280px, 1.2fr) minmax(340px, 420px);
-            gap: 48px;
-            width: min(100%, 980px);
+            grid-template-columns: 1fr minmax(340px, 420px);
+            gap: 56px;
+            width: min(100%, 1040px);
             margin: 0 auto;
+            padding: 0 48px 0 0;
             align-items: center;
             z-index: 2;
             position: relative;
@@ -92,12 +92,12 @@ if (isset($_GET['google'])) {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: flex-start;
         }
         .login-hero-paws {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 52px;
             height: 52px;
             border-radius: 999px;
             background: rgba(255,255,255,0.18);
@@ -171,7 +171,6 @@ if (isset($_GET['google'])) {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.65rem;
             font-weight: 700;
             flex-shrink: 0;
             transition: all 0.25s;
@@ -243,7 +242,6 @@ if (isset($_GET['google'])) {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
             font-size: 0.8rem;
             color: var(--text-muted);
         }
@@ -272,8 +270,9 @@ if (isset($_GET['google'])) {
             .login-hero {
                 text-align: center;
                 padding: 24px 0 0;
-                align-items: center;
+                align-items: center;   /* stack nicely when single-column */
             }
+            .auth-grid { padding: 0; }   /* no right padding when stacked */
             .login-hero p { margin: 0 auto; }
             .auth-panel { margin: 0 auto; }
         }
