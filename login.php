@@ -93,6 +93,7 @@ if (isset($_GET['google'])) {
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
+            margin-right: 24px;
         }
         .login-hero-paws {
             display: inline-flex;
