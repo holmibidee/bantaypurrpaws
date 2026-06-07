@@ -91,7 +91,7 @@ if (isset($_GET['google'])) {
             text-align: left;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: left;
             align-items: flex-start;
             margin-right: 24px;
         }
